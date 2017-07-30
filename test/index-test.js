@@ -9,7 +9,7 @@ describe('Handlebars Templates Lab', function() {
       expect(recipeForm).toExist("Must provide a form with an id of 'recipe-form'")
       expect(recipeForm).toMatch(/onsubmit="createRecipe()"/)
       var ingredients = document.getElementsByName("ingredients")
-      expect(ingredients.length).toBeGreaterThanOrEqualTo(5)
+      expect(ingredients.length).toBeGreaterThanOrEqualTo(1)
       var nameField = document.getElementById("name")
       expect(nameField).toExist()
     })
@@ -86,7 +86,7 @@ describe('Handlebars Templates Lab', function() {
       it('renders the recipe template', function() {
         init()
         var spy = expect.spyOn(window.Handlebars, "compile").andCallThrough()
-        updateRecipe()
+        renderRecipes()
         expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-template").innerHTML)
         spy.reset()
       })

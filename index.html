@@ -26,7 +26,7 @@
     </script>
 
     <script type="text/x-handlebars-template" id="recipe-form-partial">
-      <form id="recipe-form" onsubmit="event.preventDefault(); handleSubmit(); return false;">
+      <form id="recipe-form" onsubmit="handleSubmit(event); return false;">
       <input type="text" id="name" name="name" placeholder="Recipe Name" value="{{ name }}"><br>
       <input type="text" id="description" name="description" placeholder="Recipe Description" value="{{ description }}"><br>
       <b>Ingredients (separate by comma)</b><br>

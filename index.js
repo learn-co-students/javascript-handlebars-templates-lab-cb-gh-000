@@ -81,7 +81,7 @@ const handleSubmit = () => {
   if(document.getElementById('ingredients').value === ""){
     alert('You must enter at least 1 ingredient.');
   } else {
-    (index < 0) ? createRecipe() : updateRecipe(index);
+    index < 0 ? recipes.createRecipe() : recipes.updateRecipe(index);
   }
 }
 

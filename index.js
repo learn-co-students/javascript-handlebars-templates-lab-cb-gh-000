@@ -1,13 +1,14 @@
+/*    Note regarding learn.co lab:
+ *    test/index-test.js has been modified to accommodate
+ *    class methods rather than functions
+ */
+
 let index = -1;
 
 class Recipe {
   constructor(){
       this.items = [];
       this.totalRecipies = 0;
-  }
-
-  getIndex(){
-    return index;
   }
 
   createRecipe(){
@@ -23,14 +24,15 @@ class Recipe {
     }
 
   updateRecipe(index){
-    const recipe = this.items[index],
-          name = recipe.name,
-          description = recipe.description,
-          ingredients = recipe.ingredients.split(',');
+    const name = document.getElementById('name').value,
+          description = document.getElementById('description').value,
+          ingredients = document.getElementById('ingredients').value.split(',');
+
     this.items.splice(index, 1, { name, description, ingredients });
     console.log(this.items[index]);
     renderRecipes();
     clearFormValues();
+    changeIndex(-1);
   }
 
   displayIngredient(ingredientString){
@@ -58,23 +60,15 @@ function clearFormValues(){
   document.getElementById('ingredients').value = "";
 }
 
-function createRecipe(){
-  recipes.createRecipe();
-}
-
-function updateRecipe(index){
-  recipes.updateRecipe(index);
-}
-
 function renderRecipes(){
   const recipeList = Handlebars.compile(document.getElementById('recipe-template').innerHTML);
-  document.getElementById('recipes').innerHTML = recipeList(recipes.items);
+  document.getElementById('recipes').innerHTML = recipeList(recipes.getRecipe());
 }
 
 function displayEditForm(index){
   changeIndex(index);
   const recipeForm = Handlebars.compile(document.getElementById('recipe-form-template').innerHTML);
-  document.getElementById('form').innerHTML = recipeForm(recipes.items[index]);
+  document.getElementById('form').innerHTML = recipeForm(recipes.getRecipe(index));
   console.log(index);
   console.log(recipes);
 }
@@ -83,8 +77,12 @@ function changeIndex(newIndex){
   index = newIndex;
 }
 
-function handleSubmit(){
+const handleSubmit = () => {
+  if(document.getElementById('ingredients').value === ""){
+    alert('You must enter at least 1 ingredient.');
+  } else {
     (index < 0) ? createRecipe() : updateRecipe(index);
+  }
 }
 
 function init() {

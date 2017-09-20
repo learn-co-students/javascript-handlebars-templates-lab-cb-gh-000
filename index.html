@@ -8,7 +8,24 @@
   </head>
   <body>
     <main id="main">
+
     </main>
+    <form id="recipe-form-template">
+      <input type="text" name="" value="">
+    </form>
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <h1>{{name}}</h1>
+      <p>
+        {{description}}
+      </p>
+    </script>
+    <script type="text/x-handlebars-template" id="recipe-details-partial">
+      {{#each ingredients}}
+        <li>
+          {{name}}
+        </li>
+      {{/each}}
+    </script>
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->

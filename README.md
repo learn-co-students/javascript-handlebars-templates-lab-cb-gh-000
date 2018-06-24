@@ -1,4 +1,4 @@
-# JavaScript Handlebars Templates Lab
+h# JavaScript Handlebars Templates Lab
 
 ## Objectives
 
